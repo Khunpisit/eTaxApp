@@ -1,0 +1,54 @@
+<ion-view view-title="ระบบยื่นภาษีออนไลน์" >
+    <ion-content ng-controller="memberHotelController" ng-init="init()">
+        <div class="list-card">
+            <div class="item">
+                {{ SiteName }}
+            </div>
+            <div class="item item-body">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        เดือน
+                    </div>
+                    <select ng-model="Month" disabled style="color:#b0b0b0;">
+                        <option value="1">มกราคม</option>
+                        <option value="2">กุมภาพันธ์ </option>
+                        <option value="3">มีนาคม </option>
+                        <option value="4">เมษายน </option>
+                        <option value="5">พฤษภาคม </option>
+                        <option value="6">มิถุนายน </option>
+                        <option value="7">กรกฎาคม </option>
+                        <option value="8">สิงหาคม </option>
+                        <option value="9">กันยายน </option>
+                        <option value="10">ตุลาคม </option>
+                        <option value="11">พฤศจิกายน </option>
+                        <option value="12">ธันวาคม </option>
+                    </select>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        ปี
+                    </div>
+                    <select ng-model="Year" disabled style="color:#b0b0b0;">
+                        <option ng-selected="{{y.US == Year}}"
+                                ng-repeat="y in YearOP"
+                                value="{{y.US}}">
+                            {{y.TH}}
+                        </option>
+                    </select>
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">รวมค่าเช่า  ห้องพักทั้งสิ้น</span>
+                    <input class="text-right" type="text" step="0.00" placeholder="รวมยอดเงินค่าเช่าห้องพักทั้งสิ้น" ng-model="form.qty" fcsa-number="{}">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">รวมค่าธรรมเนียม (อัตราภาษี {{form.TaxRate}} %)</span>
+                    <input class="text-right" type="text" placeholder="รวมค่าธรรมเนียม (อัตราภาษี {{form.TaxRate}} %)" value="{{form.amt = (form.qty * (form.TaxRate/100) | number:2)}}" disabled>
+                </label>
+            </div>
+            <div class="item">
+                <button type="button" class="button  button-full button-positive" ng-click="click_save()">ยื่นภาษี</button>
+                <button type="button" class="button  button-full button-assertive">ยกเลิก</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="ระบบยื่นภาษีออนไลน์">
+    <ion-content ng-controller="historyHotelController">
+        <div class="card" ng-repeat="d in data track by $index">
+            <div class="item item-divider">
+                วันที่ยื่น {{d.CreateDateFullDateText}}
+            </div>
+            <div class="item item-text-wrap">
+                <p>เลขที่ทะเบียน {{d.CompCode}} {{}}</p>
+                <p>สถานะ {{d.StatusText}}</p>
+                <p>กำหนดชำระ {{d.ExpireDateFullDateText}}</p>
+                <p>วันที่ชำระ {{d.ReceiptDateFullDateText}}</p>
+                <p>จำนวนเงิน {{d.Amount | number:2}}</p>
+                <a ng-click="pdfLink('{{d.PaymentFile}}')" class="button button-small button-positive">
+                    ดูใบชำระเงิน
+                </a>
+                <a href="{{d.PaymentFile}}" download ng-click="loadfiles('{{d.PaymentFile}}')" class="button button-small button-positive">
+                    ดาวน์โหลดใบชำระเงิน
+                </a>
+            </div>
+        </div>
+        <ion-infinite-scroll on-infinite="siteload()"
+                             ng-if="more"
+                             distance="1%"
+                             >
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

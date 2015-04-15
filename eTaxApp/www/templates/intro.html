@@ -1,0 +1,29 @@
+﻿<ion-view view-title="ระบบ ยื่นชำระภาษีออนไลน์" ng-init="init()">
+    <ion-content ng-controller="loginController">
+        <div class="list">
+            <div class="item text-center">
+                <img height="120" width="120" 
+                     src="{{Province=='img/iconuser.png' | iif:'img/iconuser.png':'http://develop.iconframework.com/etax_api/api/render/logo/'+Province}}" />
+            </div>
+            <div class="item item-input  item-select">
+                <div class="input-label" style="width:20%">
+                    จังหวัด
+                </div>
+                <select ng-model="Province" ng-change="ProvinceChange()" style="max-width:80%;padding-left:0;">
+                    <option ng-repeat="d in data" value="{{d.PrivateKey }}">{{ d.FromDisplayName}}</option>
+                </select>
+            </div>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">รหัสบัตรประชาชน</span>
+                <input type="text" placeholder="รหัสบัตรประชาชน" ng-model="login.UserName" maxlength="13">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">รหัสผ่าน</span>
+                <input type="password" placeholder="รหัสผ่าน" ng-model="login.Password">
+            </label>
+            <button class="button button-block button-positive" ng-click="doLogin()">
+                เข้าสู่ระบบ
+            </button>
+        </div>
+    </ion-content>
+</ion-view>
